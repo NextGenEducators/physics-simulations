@@ -2,25 +2,35 @@ const canvas = document.getElementById('collisionCanvas');
 const ctx = canvas.getContext('2d');
 
 // Initial conditions
-let blockA = { x: 50, y: 150, width: 50, height: 30, color: 'blue', velocity: 2 }; // Block A (moving)
-let blockB = { x: 300, y: 150, width: 50, height: 30, color: 'yellow', velocity: 0 }; // Block B (stationary)
+let blockA = { x: 50, y: 150, width: 50, height: 30, color: 'blue', velocity: 2, mass: 6 }; // Block A (moving)
+let blockB = { x: 300, y: 150, width: 50, height: 30, color: 'yellow', velocity: 0, mass: 2 }; // Block B (stationary)
 let time = 0;  // Time in seconds
 let collisionOccurred = false; // Flag to indicate if collision happened
-let speedB = 0;  // Speed of Block B after collision
+
+// Function to draw text (time and block labels)
+function drawText() {
+    // Draw time text
+    ctx.fillStyle = 'black';
+    ctx.font = '16px Arial';
+    ctx.fillText(`t = ${time.toFixed(2)} s`, 10, 20);  // Display time at the top left
+
+    // Draw labels for Block A and Block B
+    ctx.fillText(`Block A (${blockA.mass} kg)`, blockA.x + blockA.width / 2 - 40, blockA.y + blockA.height + 20);
+    ctx.fillText(`Block B (${blockB.mass} kg)`, blockB.x + blockB.width / 2 - 40, blockB.y + blockB.height + 20);
+}
 
 // Simulate the collision (elastic collision formula)
 function elasticCollision() {
-    const m1 = 6;  // Mass of Block A (kg)
-    const m2 = 2;  // Mass of Block B (kg)
+    const m1 = blockA.mass;  // Mass of Block A (kg)
+    const m2 = blockB.mass;  // Mass of Block B (kg)
     const u1 = blockA.velocity;  // Initial velocity of Block A (m/s)
     const u2 = blockB.velocity;  // Initial velocity of Block B (m/s)
 
     // Apply the elastic collision formula to calculate the final velocity of Block B
-    speedB = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2);
+    const speedB = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2);
     
-    // Update the display on the webpage
-    document.getElementById('speedB').textContent = speedB.toFixed(2);  // Display the final velocity in the solution text
-    blockB.velocity = speedB;  // Set the final velocity of Block B after the collision
+    // Set the final velocity of Block B after the collision
+    blockB.velocity = speedB;
 }
 
 // Draw the blocks and update the simulation
@@ -34,6 +44,9 @@ function draw() {
     // Draw Block B
     ctx.fillStyle = blockB.color;
     ctx.fillRect(blockB.x, blockB.y, blockB.width, blockB.height);
+
+    // Draw text (time and block labels)
+    drawText();
 
     // Move Block A (initial velocity)
     if (!collisionOccurred) {
@@ -56,8 +69,9 @@ function draw() {
         blockB.x = canvas.width - blockB.width;
     }
 
-    // Repeat the drawing function
+    // Increment time
     if (blockA.x < canvas.width) {
+        time += 0.01;  // Increment time for every frame
         requestAnimationFrame(draw);
     }
 }
