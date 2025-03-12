@@ -27,6 +27,5 @@ h1 {
     background-color: #f9f9f9;
     margin-top: 20px;
     font-size: 16px;
-    white-space: pre-wrap;
-    font-family: monospace;
+    white-space: pre-wrap; /* Makes the formula formatting visible */
 }
