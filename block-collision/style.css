@@ -28,3 +28,11 @@ h1 {
     margin-top: 20px;
     font-size: 16px;
 }
+
+#solution ul, #solution ol {
+    margin-left: 20px;
+}
+
+#solution li {
+    margin-bottom: 10px;
+}
