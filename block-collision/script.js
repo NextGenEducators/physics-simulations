@@ -1,67 +1,105 @@
-// Setup Canvas
-const canvas = document.getElementById('simulationCanvas');
+const canvas = document.getElementById('collisionCanvas');
 const ctx = canvas.getContext('2d');
 
-// Set canvas size
-canvas.width = 600;
-canvas.height = 400;
+// Initial conditions
+let blockA = { x: 50, y: 150, width: 50, height: 30, color: 'blue', velocity: 2, mass: 6 }; // Block A (moving)
+let blockB = { x: 300, y: 150, width: 50, height: 30, color: 'yellow', velocity: 0, mass: 2 }; // Block B (stationary)
+let time = 0;  // Time in seconds
+let collisionOccurred = false; // Flag to indicate if collision happened
 
-// Block parameters
-const blockA = { x: 50, y: 200, width: 60, height: 30, mass: 6, velocity: 2, color: 'blue', label: 'Block A: 6 kg' };
-const blockB = { x: 500, y: 200, width: 60, height: 30, mass: 2, velocity: 0, color: 'yellow', label: 'Block B: 2 kg' };
+// Solution text elements
+const solutionSteps = [
+    "Step 1: Apply the formula for elastic collision",
+    "We will use the elastic collision formulas to find the final velocities:",
+    "v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2)",
+    "v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2)",
+    "Step 2: Solve for the final velocities",
+    "Block A: v1 = (6 - 2) * 2 + 2 * 2 * 0 / (6 + 2) = 1.5 m/s",
+    "Block B: v2 = (2 - 6) * 0 + 2 * 6 * 2 / (6 + 2) = 3.00 m/s",
+    "Step 3: Conclusion",
+    "After applying the formula, we find that:",
+    "The final velocity of Block A: 1.5 m/s",
+    "The final velocity of Block B: 3.00 m/s"
+];
 
-// Draw Blocks
-function drawBlocks() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+let currentStep = 0;  // Track which solution step we're at
+
+// Function to draw text (time and block labels)
+function drawText() {
+    // Draw time text
+    ctx.fillStyle = 'black';
+    ctx.font = '16px Arial';
+    ctx.fillText(`t = ${time.toFixed(2)} s`, 10, 20);  // Display time at the top left
+
+    // Draw labels for Block A and Block B
+    ctx.fillText(`Block A (${blockA.mass} kg)`, blockA.x + blockA.width / 2 - 40, blockA.y + blockA.height + 20);
+    ctx.fillText(`Block B (${blockB.mass} kg)`, blockB.x + blockB.width / 2 - 40, blockB.y + blockB.height + 20);
+
+    // Display solution step text
+    const solutionElement = document.getElementById('solution');
+    solutionElement.innerHTML = `<h2>Solution:</h2><p><strong>Given:</strong></p><p>Mass of Block A: 6 kg</p><p>Mass of Block B: 2 kg</p><p>Initial velocity of Block A: 2 m/s</p><p>Initial velocity of Block B: 0 m/s</p>`;
+    solutionElement.innerHTML += `<p><strong>${solutionSteps[currentStep]}</strong></p>`;
+}
+
+// Simulate the collision (elastic collision formula)
+function elasticCollision() {
+    const m1 = blockA.mass;  // Mass of Block A (kg)
+    const m2 = blockB.mass;  // Mass of Block B (kg)
+    const u1 = blockA.velocity;  // Initial velocity of Block A (m/s)
+    const u2 = blockB.velocity;  // Initial velocity of Block B (m/s)
+
+    // Apply the elastic collision formula to calculate the final velocity of Block B
+    const v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2);  // Final velocity of Block A
+    const v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2);  // Final velocity of Block B
+    
+    // Set the final velocities after the collision
+    blockA.velocity = v1;
+    blockB.velocity = v2;
+}
+
+// Draw the blocks and update the simulation
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+
+    // Draw Block A
     ctx.fillStyle = blockA.color;
     ctx.fillRect(blockA.x, blockA.y, blockA.width, blockA.height);
+
+    // Draw Block B
     ctx.fillStyle = blockB.color;
     ctx.fillRect(blockB.x, blockB.y, blockB.width, blockB.height);
 
-    // Labels
-    ctx.fillStyle = 'black';
-    ctx.font = '16px Arial';
-    ctx.fillText(blockA.label, blockA.x + blockA.width / 2 - ctx.measureText(blockA.label).width / 2, blockA.y + blockA.height + 20);
-    ctx.fillText(blockB.label, blockB.x + blockB.width / 2 - ctx.measureText(blockB.label).width / 2, blockB.y + blockB.height + 20);
-}
+    // Draw text (time and block labels)
+    drawText();
 
-// Update Block Positions
-function updatePositions() {
-    blockA.x += blockA.velocity; // Block A moves
-    blockB.x += blockB.velocity; // Block B moves
-}
-
-// Elastic Collision Calculation
-function applyCollision() {
-    const vA1 = ((blockA.mass - blockB.mass) * blockA.velocity + 2 * blockB.mass * blockB.velocity) / (blockA.mass + blockB.mass);
-    const vB1 = ((blockB.mass - blockA.mass) * blockB.velocity + 2 * blockA.mass * blockA.velocity) / (blockA.mass + blockB.mass);
-
-    // Apply final velocities
-    blockA.velocity = vA1;
-    blockB.velocity = vB1;
-}
-
-// Animation Function
-let isCollision = false;
-let collisionTime = 100; // Time of collision in milliseconds
-
-function animate() {
-    drawBlocks();
-    updatePositions();
-
-    // Check for collision
-    if (blockA.x + blockA.width >= blockB.x && !isCollision) {
-        isCollision = true;
-        applyCollision();
+    // Move Block A (initial velocity)
+    if (!collisionOccurred) {
+        blockA.x += blockA.velocity;
     }
 
-    // Stop the animation after collision
-    if (isCollision && blockA.x >= blockB.x) {
-        cancelAnimationFrame(animate);
-    } else {
-        requestAnimationFrame(animate);
+    // Check for collision (when blocks meet)
+    if (!collisionOccurred && blockA.x + blockA.width >= blockB.x) {
+        collisionOccurred = true;
+        elasticCollision();  // Apply collision formula
+        currentStep = 5; // Show step 5 (solution start) after collision
+    }
+
+    // Move Block B after the collision
+    if (collisionOccurred) {
+        blockB.x += blockB.velocity;
+    }
+
+    // Stop the simulation after the collision
+    if (blockB.x + blockB.width > canvas.width) {
+        blockB.x = canvas.width - blockB.width;
+    }
+
+    // Increment time
+    if (blockA.x < canvas.width) {
+        time += 0.01;  // Increment time for every frame
+        requestAnimationFrame(draw);
     }
 }
 
-// Start Animation
-animate();
+// Start the simulation
+requestAnimationFrame(draw);
