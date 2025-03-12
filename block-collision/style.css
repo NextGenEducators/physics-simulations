@@ -1,48 +1,27 @@
-/* General body and page layout */
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
     margin: 0;
-    padding: 20px;
-    background-color: #f4f4f9;
-    color: #333;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-/* Title styling */
 h1 {
-    font-size: 2em;
-    color: #4CAF50;
+    text-align: center;
 }
 
-/* Description paragraph styling */
-p {
-    font-size: 1.1em;
-    margin-bottom: 20px;
+#collisionCanvas {
+    border: 1px solid #000;
+    margin: 20px;
 }
 
-/* Canvas container styling */
-canvas {
-    border: 2px solid #333;
-    background-color: #ffffff;
-    margin-top: 20px;
-}
-
-/* Solution display section */
 #solution {
-    margin-top: 20px;
-    font-size: 1.2em;
-    padding: 15px;
+    width: 600px;
+    padding: 20px;
     border: 1px solid #ddd;
-    background-color: #e8f5e9;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
+    background-color: #f9f9f9;
+    margin-top: 20px;
 }
-
-/* Styling for the velocity text */
-#speedB {
-    font-weight: bold;
-    color: #FF5722;
-}
- 
