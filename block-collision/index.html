@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Collision Simulation</title>
+    <title>Elastic Collision Simulation</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,9 +11,12 @@
             margin: 0;
             padding: 20px;
         }
+
         canvas {
             border: 1px solid #000;
+            margin-top: 20px;
         }
+
         #solution {
             margin-top: 20px;
             font-size: 18px;
@@ -21,75 +24,17 @@
     </style>
 </head>
 <body>
-    <h1>Elastic Collision of Blocks A and B</h1>
-    
+    <h1>Elastic Collision Simulation</h1>
+    <p>At time t = 0, Block A slides towards Block B. After the collision, Block B's velocity is updated. Watch the blocks collide!</p>
+
+    <!-- Canvas to display the animation -->
     <canvas id="collisionCanvas" width="600" height="200"></canvas>
 
+    <!-- Display the calculated speed of Block B -->
     <div id="solution">
-        <h3>Solution:</h3>
-        <p>At time t = 0, Block A is moving toward Block B, which is initially at rest. The collision is elastic.</p>
-        <p>Given: <br>Mass of Block A = 6 kg, Mass of Block B = 2 kg, Change in Kinetic Energy of Block B = 9 J.</p>
-        <p>Speed of Block B after the collision: <strong><span id="speedB"></span> m/s</strong></p>
-        <p><strong>Step 1: Calculate velocity of Block B using the conservation of kinetic energy and momentum.</strong></p>
+        <p>Speed of Block B after the collision: <span id="speedB">0</span> m/s</p>
     </div>
 
-    <script>
-        // Basic setup for animation
-        const canvas = document.getElementById('collisionCanvas');
-        const ctx = canvas.getContext('2d');
-
-        let blockA = {
-            x: 50,
-            y: 100,
-            radius: 20,
-            mass: 6,  // kg
-            velocity: 3  // m/s (initial velocity of Block A)
-        };
-
-        let blockB = {
-            x: 400,
-            y: 100,
-            radius: 20,
-            mass: 2,  // kg
-            velocity: 0  // m/s (initial velocity of Block B)
-        };
-
-        // Function to animate the collision
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Draw Block A and Block B
-            ctx.beginPath();
-            ctx.arc(blockA.x, blockA.y, blockA.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'blue';
-            ctx.fill();
-            ctx.beginPath();
-            ctx.arc(blockB.x, blockB.y, blockB.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'red';
-            ctx.fill();
-
-            // Update positions
-            blockA.x += blockA.velocity;
-            blockB.x += blockB.velocity;
-
-            // Collision detection (check if the blocks collide)
-            if (blockA.x + blockA.radius >= blockB.x - blockB.radius) {
-                // Elastic collision equations
-                let vA_final = ((blockA.mass - blockB.mass) * blockA.velocity + 2 * blockB.mass * blockB.velocity) / (blockA.mass + blockB.mass);
-                let vB_final = ((blockB.mass - blockA.mass) * blockB.velocity + 2 * blockA.mass * blockA.velocity) / (blockA.mass + blockB.mass);
-
-                // Update velocities after collision
-                blockA.velocity = vA_final;
-                blockB.velocity = vB_final;
-
-                // Display the speed of Block B after the collision
-                document.getElementById("speedB").innerText = vB_final.toFixed(2);
-            }
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-    </script>
+    <script src="script.js"></script> <!-- Link to JavaScript -->
 </body>
 </html>
