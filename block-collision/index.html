@@ -16,26 +16,23 @@
     <div id="solution">
         <h2>Solution:</h2>
         <p><strong>Given:</strong></p>
-        <p>Mass of Block A: 6 kg</p>
-        <p>Mass of Block B: 2 kg</p>
-        <p>Initial velocity of Block A: 2 m/s</p>
-        <p>Initial velocity of Block B: 0 m/s</p>
+        <ul>
+            <li>Mass of Block A: 6 kg</li>
+            <li>Mass of Block B: 2 kg</li>
+            <li>Initial velocity of Block A: 2 m/s</li>
+            <li>Initial velocity of Block B: 0 m/s</li>
+        </ul>
 
-        <p><strong>Step 1: Apply the formula for elastic collision</strong></p>
-        <p>We will use the elastic collision formulas to find the final velocities:</p>
-        <pre>
-        v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2)
-        v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2)
-        </pre>
+        <p><strong>Step 1: Set up the elastic collision formula</strong></p>
+        <p id="formula">Use the following formulas:</p>
+        <p id="collisionFormula">Final velocity of Block A: <strong>v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2)</strong></p>
+        <p id="collisionFormulaB">Final velocity of Block B: <strong>v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2)</strong></p>
 
-        <p><strong>Step 2: Solve for the final velocities</strong></p>
-        <p><strong>Block A:</strong> v1 = (6 - 2) * 2 + 2 * 2 * 0 / (6 + 2) = 1.5 m/s</p>
-        <p><strong>Block B:</strong> v2 = (2 - 6) * 0 + 2 * 6 * 2 / (6 + 2) = 3.00 m/s</p>
+        <p><strong>Step 2: Apply the formula</strong></p>
+        <p id="calcSteps">Now calculate the final velocities of Block A and Block B.</p>
 
-        <p><strong>Step 3: Conclusion</strong></p>
-        <p>After applying the formula, we find that:</p>
-        <p>The final velocity of Block A: 1.5 m/s</p>
-        <p>The final velocity of Block B: 3.00 m/s</p>
+        <p><strong>Final Answer:</strong></p>
+        <p id="finalAnswer">Final velocity of Block B is <span id="vB"></span> m/s.</p>
     </div>
 
     <script src="script.js"></script>
