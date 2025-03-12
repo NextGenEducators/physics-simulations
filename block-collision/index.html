@@ -3,43 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Collision Simulation</title>
+    <title>Physics Simulation: Elastic Collision</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Physics Simulation: Block Collision</h1>
-    
-    <div id="canvas-container">
-        <canvas id="simulationCanvas"></canvas>
-    </div>
+    <h1>Elastic Collision of Two Blocks</h1>
 
+    <!-- Canvas where the simulation will run -->
+    <canvas id="collisionCanvas" width="600" height="200"></canvas>
+
+    <!-- Solution Display -->
     <div id="solution">
         <h2>Solution:</h2>
-        <p>The collision of Block A and Block B is elastic. Let's solve for the final velocities.</p>
+        <p><strong>Given:</strong></p>
+        <p>Mass of Block A: 6 kg</p>
+        <p>Mass of Block B: 2 kg</p>
+        <p>Initial velocity of Block A: 2 m/s</p>
+        <p>Initial velocity of Block B: 0 m/s</p>
+
+        <p><strong>Step 1: Apply the formula for elastic collision</strong></p>
+        <p>We will use the elastic collision formulas to find the final velocities:</p>
         <pre>
-Step 1: Use the following formulas for elastic collision:
-
-    v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2)
-    v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2)
-
-Where:
-    m1 = mass of Block A
-    m2 = mass of Block B
-    u1 = initial velocity of Block A
-    u2 = initial velocity of Block B (at rest)
-
-Step 2: Plug in the values:
-
-    m1 = 6 kg
-    m2 = 2 kg
-    u1 = 2 m/s
-    u2 = 0 m/s
-
-v1 = ((6 - 2) * 2 + 2 * 2 * 0) / (6 + 2) = 1.5 m/s (velocity of Block A after collision)
-v2 = ((2 - 6) * 0 + 2 * 6 * 2) / (6 + 2) = 3.00 m/s (velocity of Block B after collision)
-
-So, the final velocity of Block B is 3.00 m/s.
+        v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2)
+        v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2)
         </pre>
+
+        <p><strong>Step 2: Solve for the final velocities</strong></p>
+        <p><strong>Block A:</strong> v1 = (6 - 2) * 2 + 2 * 2 * 0 / (6 + 2) = 1.5 m/s</p>
+        <p><strong>Block B:</strong> v2 = (2 - 6) * 0 + 2 * 6 * 2 / (6 + 2) = 3.00 m/s</p>
+
+        <p><strong>Step 3: Conclusion</strong></p>
+        <p>After applying the formula, we find that:</p>
+        <p>The final velocity of Block A: 1.5 m/s</p>
+        <p>The final velocity of Block B: 3.00 m/s</p>
     </div>
 
     <script src="script.js"></script>
