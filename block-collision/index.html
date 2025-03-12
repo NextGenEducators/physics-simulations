@@ -12,7 +12,7 @@
     <!-- Canvas where the simulation will run -->
     <canvas id="collisionCanvas" width="600" height="200"></canvas>
 
-    <!-- Solution Display (static solution steps) -->
+    <!-- Solution Display (static solution steps with dynamic value updates) -->
     <div id="solution">
         <h2>Solution:</h2>
         <p><strong>Given:</strong></p>
@@ -34,10 +34,10 @@
             </li>
             <li>Substitute the known values into the equations to find the final velocities:</li>
             <ul>
-                <li>v<sub>A</sub> = ((6 - 2) * 2 + 2 * 2 * 0) / (6 + 2) = 1.5 m/s</li>
-                <li>v<sub>B</sub> = ((2 - 6) * 0 + 2 * 6 * 2) / (6 + 2) = 3.00 m/s</li>
+                <li>v<sub>A</sub> = ((6 - 2) * 2 + 2 * 2 * 0) / (6 + 2) = <span id="vA-value">1.5 m/s</span></li>
+                <li>v<sub>B</sub> = ((2 - 6) * 0 + 2 * 6 * 2) / (6 + 2) = <span id="vB-value">3.00 m/s</span></li>
             </ul>
-            <li><strong>Result:</strong> The final velocity of Block B is 3.00 m/s.</li>
+            <li><strong>Result:</strong> The final velocity of Block B is <span id="final-vB">3.00 m/s</span>.</li>
         </ol>
     </div>
 
