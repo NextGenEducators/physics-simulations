@@ -12,7 +12,7 @@
     <!-- Canvas where the simulation will run -->
     <canvas id="collisionCanvas" width="600" height="200"></canvas>
 
-    <!-- Solution Display -->
+    <!-- Solution Display (static solution steps) -->
     <div id="solution">
         <h2>Solution:</h2>
         <p><strong>Given:</strong></p>
@@ -23,16 +23,22 @@
             <li>Initial velocity of Block B: 0 m/s</li>
         </ul>
 
-        <p><strong>Step 1: Set up the elastic collision formula</strong></p>
-        <p id="formula">Use the following formulas:</p>
-        <p id="collisionFormula">Final velocity of Block A: <strong>v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2)</strong></p>
-        <p id="collisionFormulaB">Final velocity of Block B: <strong>v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2)</strong></p>
-
-        <p><strong>Step 2: Apply the formula</strong></p>
-        <p id="calcSteps">Now calculate the final velocities of Block A and Block B.</p>
-
-        <p><strong>Final Answer:</strong></p>
-        <p id="finalAnswer">Final velocity of Block B is <span id="vB"></span> m/s.</p>
+        <p><strong>Step-by-Step Solution:</strong></p>
+        <ol>
+            <li>Apply the principle of conservation of momentum and energy for the elastic collision.</li>
+            <li>Use the following formulas to calculate the final velocities of the blocks after collision:
+                <ul>
+                    <li>For Block A: <strong>v<sub>A</sub> = ((m<sub>A</sub> - m<sub>B</sub>) * u<sub>A</sub> + 2 * m<sub>B</sub> * u<sub>B</sub>) / (m<sub>A</sub> + m<sub>B</sub>)</strong></li>
+                    <li>For Block B: <strong>v<sub>B</sub> = ((m<sub>B</sub> - m<sub>A</sub>) * u<sub>B</sub> + 2 * m<sub>A</sub> * u<sub>A</sub>) / (m<sub>A</sub> + m<sub>B</sub>)</strong></li>
+                </ul>
+            </li>
+            <li>Substitute the known values into the equations to find the final velocities:</li>
+            <ul>
+                <li>v<sub>A</sub> = ((6 - 2) * 2 + 2 * 2 * 0) / (6 + 2) = 1.5 m/s</li>
+                <li>v<sub>B</sub> = ((2 - 6) * 0 + 2 * 6 * 2) / (6 + 2) = 3.00 m/s</li>
+            </ul>
+            <li><strong>Result:</strong> The final velocity of Block B is 3.00 m/s.</li>
+        </ol>
     </div>
 
     <script src="script.js"></script>
