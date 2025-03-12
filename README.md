@@ -3,9 +3,7 @@
 This repository contains interactive physics simulations for various concepts. Each simulation demonstrates a key principle in physics or chemistry, including atomic interactions, laws of motion, and energy transfer.
 
 ## Available Simulations
-1. **Atomic Interactions**: Simulate the behavior of atoms and electrons.
-2. **Laws of Motion**: Explore Newton’s three laws of motion with interactive animations.
-3. **Energy Transfer**: See how energy is transferred between objects in different systems.
+1. **[Elastic Collision of Two Blocks](https://your-username.github.io/your-repository-name/elastic-collision)**: Visualize and interact with the elastic collision of two blocks with different masses. This simulation demonstrates the conservation of momentum and energy in an ideal elastic collision.
 
 ## How to Use
 - Click on the concept in the landing page to start the simulation.
