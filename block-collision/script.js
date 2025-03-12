@@ -33,11 +33,6 @@ function elasticCollision() {
     // Set the final velocities after the collision
     blockA.velocity = v1;
     blockB.velocity = v2;
-
-    // Update the displayed solution values
-    document.getElementById('vA-value').innerText = v1.toFixed(2) + ' m/s';
-    document.getElementById('vB-value').innerText = v2.toFixed(2) + ' m/s';
-    document.getElementById('final-vB').innerText = v2.toFixed(2) + ' m/s';
 }
 
 // Draw the blocks and update the simulation
