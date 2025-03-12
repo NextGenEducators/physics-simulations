@@ -6,7 +6,6 @@ let blockA = { x: 50, y: 150, width: 50, height: 30, color: 'blue', velocity: 2,
 let blockB = { x: 300, y: 150, width: 50, height: 30, color: 'yellow', velocity: 0, mass: 2 }; // Block B (stationary)
 let time = 0;  // Time in seconds
 let collisionOccurred = false; // Flag to indicate if collision happened
-let vB = 0; // Store final velocity of Block B
 
 // Function to draw text (time and block labels)
 function drawText() {
@@ -29,16 +28,11 @@ function elasticCollision() {
 
     // Apply the elastic collision formula to calculate the final velocity of Block B
     const v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2);  // Final velocity of Block A
-    vB = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2);  // Final velocity of Block B
+    const v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2);  // Final velocity of Block B
     
     // Set the final velocities after the collision
     blockA.velocity = v1;
-    blockB.velocity = vB;
-
-    // Update the solution text dynamically
-    document.getElementById('calcSteps').innerText = `Now calculate the final velocities using the formula:`;
-    document.getElementById('vB').innerText = vB.toFixed(2);
-    document.getElementById('finalAnswer').style.display = 'block';
+    blockB.velocity = v2;
 }
 
 // Draw the blocks and update the simulation
