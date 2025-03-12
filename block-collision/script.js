@@ -7,6 +7,23 @@ let blockB = { x: 300, y: 150, width: 50, height: 30, color: 'yellow', velocity:
 let time = 0;  // Time in seconds
 let collisionOccurred = false; // Flag to indicate if collision happened
 
+// Solution text elements
+const solutionSteps = [
+    "Step 1: Apply the formula for elastic collision",
+    "We will use the elastic collision formulas to find the final velocities:",
+    "v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2)",
+    "v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2)",
+    "Step 2: Solve for the final velocities",
+    "Block A: v1 = (6 - 2) * 2 + 2 * 2 * 0 / (6 + 2) = 1.5 m/s",
+    "Block B: v2 = (2 - 6) * 0 + 2 * 6 * 2 / (6 + 2) = 3.00 m/s",
+    "Step 3: Conclusion",
+    "After applying the formula, we find that:",
+    "The final velocity of Block A: 1.5 m/s",
+    "The final velocity of Block B: 3.00 m/s"
+];
+
+let currentStep = 0;  // Track which solution step we're at
+
 // Function to draw text (time and block labels)
 function drawText() {
     // Draw time text
@@ -17,6 +34,11 @@ function drawText() {
     // Draw labels for Block A and Block B
     ctx.fillText(`Block A (${blockA.mass} kg)`, blockA.x + blockA.width / 2 - 40, blockA.y + blockA.height + 20);
     ctx.fillText(`Block B (${blockB.mass} kg)`, blockB.x + blockB.width / 2 - 40, blockB.y + blockB.height + 20);
+
+    // Display solution step text
+    const solutionElement = document.getElementById('solution');
+    solutionElement.innerHTML = `<h2>Solution:</h2><p><strong>Given:</strong></p><p>Mass of Block A: 6 kg</p><p>Mass of Block B: 2 kg</p><p>Initial velocity of Block A: 2 m/s</p><p>Initial velocity of Block B: 0 m/s</p>`;
+    solutionElement.innerHTML += `<p><strong>${solutionSteps[currentStep]}</strong></p>`;
 }
 
 // Simulate the collision (elastic collision formula)
@@ -59,6 +81,7 @@ function draw() {
     if (!collisionOccurred && blockA.x + blockA.width >= blockB.x) {
         collisionOccurred = true;
         elasticCollision();  // Apply collision formula
+        currentStep = 5; // Show step 5 (solution start) after collision
     }
 
     // Move Block B after the collision
