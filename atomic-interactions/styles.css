@@ -1,0 +1,16 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    text-align: center;
+    padding: 20px;
+}
+#simulation-container {
+    width: 80%;
+    margin: 0 auto;
+    border: 2px solid #ccc;
+    padding: 20px;
+    background-color: #ffffff;
+}
+h1 {
+    color: #333;
+}
