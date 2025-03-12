@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elastic Collision Simulation</title>
+    <title>Physics Simulation: Elastic Collision</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Elastic Collision Simulation</h1>
-    <p>At time t = 0, Block A slides towards Block B. After the collision, Block B's velocity is updated. Watch the blocks collide!</p>
+    <h1>Elastic Collision of Two Blocks</h1>
 
-    <!-- Canvas to display the animation -->
+    <!-- Canvas where the simulation will run -->
     <canvas id="collisionCanvas" width="600" height="200"></canvas>
 
-    <!-- Display the solution -->
+    <!-- Solution Display -->
     <div id="solution">
         <h2>Solution:</h2>
-        <p>1. Apply the elastic collision formula to calculate the final velocity of Block B after the collision:</p>
-        <p><em>v<sub>2</sub> = ((m<sub>1</sub> - m<sub>2</sub>) * u<sub>1</sub> + 2 * m<sub>2</sub> * u<sub>2</sub>) / (m<sub>1</sub> + m<sub>2</sub>)</em></p>
-        <p>Where: <br>
-            m<sub>1</sub> = 6 kg (mass of Block A) <br>
-            m<sub>2</sub> = 2 kg (mass of Block B) <br>
-            u<sub>1</sub> = 2 m/s (initial velocity of Block A) <br>
-            u<sub>2</sub> = 0 m/s (initial velocity of Block B)</p>
+        <p><strong>Given:</strong></p>
+        <p>Mass of Block A: 6 kg</p>
+        <p>Mass of Block B: 2 kg</p>
+        <p>Initial velocity of Block A: 2 m/s</p>
+        <p>Initial velocity of Block B: 0 m/s</p>
 
-        <p>2. After applying the formula, you will get the final velocity of Block B: <strong>3.00 m/s</strong></p>
-        <p>3. This represents the velocity of Block B immediately after the collision.</p>
+        <p><strong>Solution:</strong></p>
+        <p>After applying the formula, the final velocity of Block B is 3.00 m/s.</p>
     </div>
 
     <script src="script.js"></script>
