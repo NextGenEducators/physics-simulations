@@ -9,36 +9,17 @@ let collisionOccurred = false; // Flag to indicate if collision happened
 
 // Solution text elements
 const solutionSteps = [
-    "Problem Overview:",
-    "At time t = 0, Block A slides along a horizontal surface toward Block B, which is initially at rest.",
-    "The masses of Block A and Block B are 6 kg and 2 kg, respectively.",
-    "The blocks collide elastically at t = 1.0 s, and as a result, the magnitude of the change in kinetic energy of Block B is 9 J.",
-    "Find: The velocity of Block B immediately after the collision.",
-    "",
-    "Step 1: Identify given values:",
-    "Mass of Block A: 6 kg",
-    "Mass of Block B: 2 kg",
-    "Initial velocity of Block A: 2 m/s",
-    "Initial velocity of Block B: 0 m/s",
-    "",
-    "Step 2: Apply the elastic collision formulas",
+    "Step 1: Apply the formula for elastic collision",
+    "We will use the elastic collision formulas to find the final velocities:",
     "v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2)",
     "v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2)",
-    "",
-    "Step 3: Plug in the known values:",
-    "For Block A (v1):",
-    "v1 = ((6 - 2) * 2 + 2 * 2 * 0) / (6 + 2)",
-    "v1 = (4 * 2) / 8",
-    "v1 = 1.0 m/s",
-    "",
-    "For Block B (v2):",
-    "v2 = ((2 - 6) * 0 + 2 * 6 * 2) / (6 + 2)",
-    "v2 = (0 + 24) / 8",
-    "v2 = 3.00 m/s",
-    "",
-    "Step 4: Final Answer:",
-    "The final velocity of Block A is 1.0 m/s.",
-    "The final velocity of Block B is 3.00 m/s."
+    "Step 2: Solve for the final velocities",
+    "Block A: v1 = (6 - 2) * 2 + 2 * 2 * 0 / (6 + 2) = 1.5 m/s",
+    "Block B: v2 = (2 - 6) * 0 + 2 * 6 * 2 / (6 + 2) = 3.00 m/s",
+    "Step 3: Conclusion",
+    "After applying the formula, we find that:",
+    "The final velocity of Block A: 1.5 m/s",
+    "The final velocity of Block B: 3.00 m/s"
 ];
 
 let currentStep = 0;  // Track which solution step we're at
@@ -56,10 +37,8 @@ function drawText() {
 
     // Display solution step text
     const solutionElement = document.getElementById('solution');
-    solutionElement.innerHTML = `<h2>Solution:</h2>`;
-    solutionSteps.slice(0, currentStep + 1).forEach(step => {
-        solutionElement.innerHTML += `<p>${step}</p>`;
-    });
+    solutionElement.innerHTML = `<h2>Solution:</h2><p><strong>Given:</strong></p><p>Mass of Block A: 6 kg</p><p>Mass of Block B: 2 kg</p><p>Initial velocity of Block A: 2 m/s</p><p>Initial velocity of Block B: 0 m/s</p>`;
+    solutionElement.innerHTML += `<p><strong>${solutionSteps[currentStep]}</strong></p>`;
 }
 
 // Simulate the collision (elastic collision formula)
