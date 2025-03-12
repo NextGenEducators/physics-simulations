@@ -27,10 +27,12 @@ function elasticCollision() {
     const u2 = blockB.velocity;  // Initial velocity of Block B (m/s)
 
     // Apply the elastic collision formula to calculate the final velocity of Block B
-    const speedB = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2);
+    const v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2);  // Final velocity of Block A
+    const v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2);  // Final velocity of Block B
     
-    // Set the final velocity of Block B after the collision
-    blockB.velocity = speedB;
+    // Set the final velocities after the collision
+    blockA.velocity = v1;
+    blockB.velocity = v2;
 }
 
 // Draw the blocks and update the simulation
@@ -78,4 +80,3 @@ function draw() {
 
 // Start the simulation
 requestAnimationFrame(draw);
- 
