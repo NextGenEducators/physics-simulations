@@ -1,55 +1,73 @@
-// Variables for the blocks
+// Get the canvas and its context
 const canvas = document.getElementById('collisionCanvas');
 const ctx = canvas.getContext('2d');
 
-let blockA = {
-    x: 50, 
-    y: 100,
+// Block properties
+const blockA = {
+    x: 50,
+    y: canvas.height / 2,
     radius: 20,
-    mass: 6,  
-    velocity: 3  
+    mass: 6,  // kg
+    velocity: 2,  // m/s (initial velocity)
+    color: 'blue'
 };
 
-let blockB = {
-    x: 400, 
-    y: 100,
+const blockB = {
+    x: 300,
+    y: canvas.height / 2,
     radius: 20,
-    mass: 2,  
-    velocity: 0  
+    mass: 2,  // kg
+    velocity: 0,  // m/s (initial velocity)
+    color: 'green'
 };
 
-// Elastic collision physics
+// Elastic collision formula to calculate velocities after collision
 function elasticCollision(blockA, blockB) {
-    const vA = blockA.velocity;
-    const vB = blockB.velocity;
+    const u1 = blockA.velocity;
+    const u2 = blockB.velocity;
+    const m1 = blockA.mass;
+    const m2 = blockB.mass;
 
-    const vA_new = ((blockA.mass - blockB.mass) * vA + 2 * blockB.mass * vB) / (blockA.mass + blockB.mass);
-    const vB_new = ((blockB.mass - blockA.mass) * vB + 2 * blockA.mass * vA) / (blockA.mass + blockB.mass);
+    // New velocities after elastic collision
+    const v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2);
+    const v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2);
 
-    return { vA_new, vB_new };
+    // Update velocities
+    blockA.velocity = v1;
+    blockB.velocity = v2;
+
+    return v2;  // return the velocity of block B after collision
 }
 
-// Update block positions
+// Function to update the positions of the blocks
 function updatePositions() {
+    // Update Block A position
     blockA.x += blockA.velocity;
-    blockB.x += blockB.velocity;
 
-    if (blockA.x + blockA.radius >= blockB.x - blockB.radius) {
-        const velocities = elasticCollision(blockA, blockB);
-        blockA.velocity = velocities.vA_new;
-        blockB.velocity = velocities.vB_new;
+    // If Block A hits Block B, trigger collision
+    if (blockA.x + blockA.radius >= blockB.x - blockB.radius && blockA.velocity > 0) {
+        // Apply the elastic collision formula
+        blockB.velocity = elasticCollision(blockA, blockB);
 
-        blockA.color = 'red';
-        blockB.color = 'yellow';
+        // Prevent Block A from passing through Block B
+        blockA.x = blockB.x - blockA.radius - 1;
     }
 }
 
-// Animate the blocks and show them
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+// Function to update the solution (velocity of Block B)
+function updateSolution() {
+    const speedBElement = document.getElementById('speedB');
+    speedBElement.textContent = blockB.velocity.toFixed(2);  // Display the velocity of Block B
+}
 
+// Animation function
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);  // Clear the canvas
+
+    // Update block positions
     updatePositions();
 
+    // Draw Block A and Block B
     ctx.beginPath();
     ctx.arc(blockA.x, blockA.y, blockA.radius, 0, Math.PI * 2);
     ctx.fillStyle = blockA.color || 'blue';
@@ -60,14 +78,12 @@ function animate() {
     ctx.fillStyle = blockB.color || 'green';
     ctx.fill();
 
+    // Update the solution for Block B's speed
     updateSolution();
+
+    // Continue animation
     requestAnimationFrame(animate);
 }
 
-function updateSolution() {
-    const speedBElement = document.getElementById('speedB');
-    speedBElement.textContent = blockB.velocity.toFixed(2);
-}
-
-// Start the animation
+// Start the animation loop
 animate();
