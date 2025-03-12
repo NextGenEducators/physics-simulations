@@ -3,82 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics Simulation - Block Collision</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        #canvas-container {
-            position: relative;
-            margin: auto;
-            width: 80%;
-            max-width: 800px;
-        }
-
-        canvas {
-            background-color: #f1f1f1;
-            display: block;
-            margin: 0 auto;
-        }
-
-        #solution {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            width: 80%;
-            max-width: 800px;
-            margin: 20px auto;
-            text-align: left;
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        p {
-            font-size: 16px;
-        }
-    </style>
+    <title>Block Collision Simulation</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <h1>Physics Simulation: Block Collision</h1>
-
+    
     <div id="canvas-container">
-        <canvas id="collisionCanvas" width="800" height="300"></canvas>
+        <canvas id="simulationCanvas"></canvas>
     </div>
 
     <div id="solution">
         <h2>Solution:</h2>
-        <p><strong>Given:</strong></p>
-        <p>Mass of Block A: 6 kg</p>
-        <p>Mass of Block B: 2 kg</p>
-        <p>Initial velocity of Block A: 2 m/s</p>
-        <p>Initial velocity of Block B: 0 m/s</p>
+        <p>The collision of Block A and Block B is elastic. Let's solve for the final velocities.</p>
+        <pre>
+Step 1: Use the following formulas for elastic collision:
 
-        <p><strong>Step 1:</strong> Apply the formula for elastic collision:</p>
-        <p>We will use the elastic collision formulas to find the final velocities:</p>
-        <pre>
-        v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2)
-        v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2)
-        </pre>
-        
-        <p><strong>Step 2:</strong> Solve for the final velocities:</p>
-        <pre>
-        Block A: v1 = (6 - 2) * 2 + 2 * 2 * 0 / (6 + 2) = 1.5 m/s
-        Block B: v2 = (2 - 6) * 0 + 2 * 6 * 2 / (6 + 2) = 3.00 m/s
-        </pre>
+    v1 = ((m1 - m2) * u1 + 2 * m2 * u2) / (m1 + m2)
+    v2 = ((m2 - m1) * u2 + 2 * m1 * u1) / (m1 + m2)
 
-        <p><strong>Step 3:</strong> Conclusion:</p>
-        <p>After applying the formula, we find that:</p>
-        <pre>
-        The final velocity of Block A: 1.5 m/s
-        The final velocity of Block B: 3.00 m/s
+Where:
+    m1 = mass of Block A
+    m2 = mass of Block B
+    u1 = initial velocity of Block A
+    u2 = initial velocity of Block B (at rest)
+
+Step 2: Plug in the values:
+
+    m1 = 6 kg
+    m2 = 2 kg
+    u1 = 2 m/s
+    u2 = 0 m/s
+
+v1 = ((6 - 2) * 2 + 2 * 2 * 0) / (6 + 2) = 1.5 m/s (velocity of Block A after collision)
+v2 = ((2 - 6) * 0 + 2 * 6 * 2) / (6 + 2) = 3.00 m/s (velocity of Block B after collision)
+
+So, the final velocity of Block B is 3.00 m/s.
         </pre>
     </div>
 
-    <script src="collisionSimulation.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
