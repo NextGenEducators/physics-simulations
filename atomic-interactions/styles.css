@@ -1,16 +1,42 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    text-align: center;
-    padding: 20px;
-}
-#simulation-container {
-    width: 80%;
-    margin: 0 auto;
-    border: 2px solid #ccc;
-    padding: 20px;
-    background-color: #ffffff;
-}
-h1 {
-    color: #333;
-}
+<style>
+    /* Global body styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #2d2d2d; /* Dark background for contrast */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #fff; /* White text color for contrast */
+    }
+
+    /* Styling the title (for example, placing it at the top of the screen) */
+    h1 {
+        position: absolute;
+        top: 10px;
+        text-align: center;
+        font-size: 2rem;
+        width: 100%;
+        margin: 0;
+        color: #FFCC00;
+    }
+
+    /* Styling the canvas for the simulation */
+    canvas {
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6); /* Soft shadow to make it stand out */
+        background-color: #000; /* Black background inside the canvas */
+    }
+
+    /* Optional: Add some small text below the canvas */
+    .info-text {
+        font-size: 1.2rem;
+        margin-top: 20px;
+        color: #ccc;
+        text-align: center;
+        width: 100%;
+    }
+
+</style>
